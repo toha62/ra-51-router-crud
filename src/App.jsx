@@ -8,12 +8,17 @@ const posts = [
   {id: 1, content: "Пост  к курсу Python", created: "2023-03-20 01-15-55"},
 ];
 
+const handleSubmit = (postText) => {  
+
+  console.log(postText);
+};
+
   return (    
       <BrowserRouter>        
         <div className="page">
           <Routes>
             <Route path="/" element={<HomePage posts={posts} />} />            
-            <Route path="/new" element={<NewPost  />} />            
+            <Route path="/new" element={<NewPost  handleSubmit={handleSubmit} />} />            
           </Routes>
         </div>
       </BrowserRouter>    
