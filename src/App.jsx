@@ -1,24 +1,29 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import HomePage from "./components/HomePage";
 import NewPost from "./components/NewPost";
+import useLoadData from "./hooks/useLoadData";
+import usePostData from "./hooks/usePostData";
 
 export default function App() {
-const posts = [
-  {id: 0, content: "Пост относящийся к курсу РЕАКТ", created: "2023-05-07 13-01-05", img: "https://i.pravatar.cc/300/0"},
-  {id: 1, content: "Пост  к курсу Python", created: "2023-03-20 01-15-55", img: "https://i.pravatar.cc/300/1"},
-];
+  const [data, setData] = useState();
+  const [posts, loading, error] = useLoadData(import.meta.env.VITE_URL);
+  const [posting, errorPosting] = usePostData(import.meta.env.VITE_URL, data);
 
-const handleSubmit = (postText) => {  
-
-  console.log(postText);
-};
+  const addNewPost = (postText) => {
+    console.log(postText);
+    const postData = {
+      content: postText,
+    }; 
+    setData(postData);
+  };
 
   return (    
       <BrowserRouter>        
         <div className="page">
           <Routes>
             <Route path="/" element={<HomePage posts={posts} />} />            
-            <Route path="/new" element={<NewPost  handleSubmit={handleSubmit} />} />            
+            <Route path="/new" element={<NewPost  handleSubmit={addNewPost} />} />            
           </Routes>
         </div>
       </BrowserRouter>    

@@ -14,7 +14,7 @@ export default function NewPost({ handleSubmit }) {
       <div className="form-group">
         <label htmlFor="postInput">Password</label>
         <textarea
-          class="form-control"
+          className="form-control"
           id="postInput"
           placeholder="Type your post"
           rows="5"
@@ -25,7 +25,7 @@ export default function NewPost({ handleSubmit }) {
         </textarea>        
       </div>  
       <div className='d-flex justify-content-around'>
-        <button type="submit" class="btn btn-primary btn-sm">Опубликовать</button>
+        <button type="submit" className="btn btn-primary btn-sm">Опубликовать</button>
         <Link to="/" className="btn btn-primary btn-sm">Отмена</Link>        
       </div>      
     </form>
