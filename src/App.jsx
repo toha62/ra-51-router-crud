@@ -4,8 +4,8 @@ import NewPost from "./components/NewPost";
 
 export default function App() {
 const posts = [
-  {id: 0, content: "Пост относящийся к курсу РЕАКТ", created: "2023-05-07 13-01-05"},
-  {id: 1, content: "Пост  к курсу Python", created: "2023-03-20 01-15-55"},
+  {id: 0, content: "Пост относящийся к курсу РЕАКТ", created: "2023-05-07 13-01-05", img: "https://i.pravatar.cc/300/0"},
+  {id: 1, content: "Пост  к курсу Python", created: "2023-03-20 01-15-55", img: "https://i.pravatar.cc/300/1"},
 ];
 
 const handleSubmit = (postText) => {  
