@@ -36,7 +36,7 @@ export default function useLoadData(url, opts='') {
     };
 
     fetchData();
-  }, [data]);
+  }, []);
 
   return [data, loading, error];
 }
