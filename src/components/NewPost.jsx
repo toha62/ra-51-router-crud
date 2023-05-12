@@ -7,6 +7,7 @@ export default function NewPost({ initialText = '', handleSubmit }) {
   
   return (
     <form
+      className="card"
       onSubmit={(evt) => {
         evt.preventDefault();        
         handleSubmit(postText);
@@ -14,7 +15,7 @@ export default function NewPost({ initialText = '', handleSubmit }) {
       }}
     >   
       <div className="form-group">
-        <label htmlFor="postInput">Password</label>
+        <label className="mb-0 mt-1 ml-1" htmlFor="postInput"><h6>Новый пост</h6></label>
         <textarea
           className="form-control"
           id="postInput"
@@ -27,8 +28,8 @@ export default function NewPost({ initialText = '', handleSubmit }) {
         </textarea>        
       </div>  
       <div className='d-flex justify-content-around'>
-        <button type="submit" className="btn btn-primary btn-sm">Опубликовать</button>
-        <Link to="/" className="btn btn-primary btn-sm">Отмена</Link>        
+        <button type="submit" className="btn btn-primary btn-sm mb-2">Опубликовать</button>
+        <Link to="/" className="material-icons close-button">clear</Link>        
       </div>      
     </form>
   );
