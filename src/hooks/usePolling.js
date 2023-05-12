@@ -8,6 +8,8 @@ export default function usePolling(url, interval, initialData) {
   
   useEffect(() => {    
     const fetchData = async () => {
+      console.log('polling');
+
       const timestamp = Date.now();
       timestampRef.current = timestamp;
 
@@ -36,11 +38,11 @@ export default function usePolling(url, interval, initialData) {
     };
 
     fetchData();
-    
+        
     const intervalId = setInterval(fetchData, interval);
     
-    return () => clearInterval(intervalId);    
-  }, []);
+    return () => {clearInterval(intervalId); console.log('clear interval')};    
+  }, [url, interval]);
 
   return [data, isLoading, hasError];
 }
