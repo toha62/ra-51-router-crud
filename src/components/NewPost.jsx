@@ -1,15 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function NewPost({ handleSubmit }) { 
   const [postText, setPostText] = useState('');
+  const navigate = useNavigate();
   
   return (
     <form
       onSubmit={(evt) => {
-        evt.preventDefault();
-        handleSubmit(postText)}
-      }
+        evt.preventDefault();        
+        handleSubmit(postText);
+        navigate('/'); 
+      }}
     >   
       <div className="form-group">
         <label htmlFor="postInput">Password</label>
