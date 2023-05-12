@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import { useState, useEffect } from 'react';
 
 export default function usePostData(url, data) {  
   const [loading, setLoading] = useState(false);

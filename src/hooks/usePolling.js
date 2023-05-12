@@ -1,12 +1,11 @@
 import {useState, useEffect, useRef} from 'react';
 
-export default function useLoadData(url, opts='') {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export default function usePolling(url, interval, initialData) {
+  const [data, setData] = useState(initialData);
+  const [isLoading, setLoading] = useState(false);
+  const [hasError, setError] = useState(null);
   const timestampRef = useRef();  
-  let timeoutId;
-
+  
   useEffect(() => {    
     const fetchData = async () => {
       const timestamp = Date.now();
@@ -15,7 +14,7 @@ export default function useLoadData(url, opts='') {
       setLoading(true);
 
       try {
-        const response = await fetch(url + opts);
+        const response = await fetch(url);
       
         if (!response.ok) {
           throw new Error(response.statusText);
@@ -35,18 +34,13 @@ export default function useLoadData(url, opts='') {
         setLoading(false);
       }
     };
-    
-    if (!timeoutId) {
-      timeoutId = setTimeout(() => {
-        console.log('fetching data');
-        fetchData();
-        clearTimeout(timeoutId);
-      }, 1000);
-    }
-    
 
-    return () => clearTimeout(timeoutId);
+    fetchData();
+    
+    const intervalId = setInterval(fetchData, interval);
+    
+    return () => clearInterval(intervalId);    
   }, []);
 
-  return [data, loading, error];
+  return [data, isLoading, hasError];
 }
