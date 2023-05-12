@@ -41,7 +41,7 @@ export default function usePolling(url, interval, initialData) {
         
     const intervalId = setInterval(fetchData, interval);
     
-    return () => {clearInterval(intervalId); console.log('clear interval')};    
+    return () => clearInterval(intervalId);    
   }, [url, interval]);
 
   return [data, isLoading, hasError];

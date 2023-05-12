@@ -4,8 +4,7 @@ export default function useLoadData(url, opts='') {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const timestampRef = useRef();  
-  let timeoutId;
+  const timestampRef = useRef();    
 
   useEffect(() => {    
     const fetchData = async () => {
@@ -15,8 +14,8 @@ export default function useLoadData(url, opts='') {
       setLoading(true);
 
       try {
-        const response = await fetch(url + opts);
-      
+        const response = await fetch(`${url}/${opts}`);
+        
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -36,16 +35,7 @@ export default function useLoadData(url, opts='') {
       }
     };
     
-    if (!timeoutId) {
-      timeoutId = setTimeout(() => {
-        console.log('fetching data');
-        fetchData();
-        clearTimeout(timeoutId);
-      }, 1000);
-    }
-    
-
-    return () => clearTimeout(timeoutId);
+    fetchData();    
   }, []);
 
   return [data, loading, error];

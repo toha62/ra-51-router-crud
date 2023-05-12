@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function NewPost({ handleSubmit }) { 
-  const [postText, setPostText] = useState('');
+export default function NewPost({ initialText = '', handleSubmit }) { 
+  const [postText, setPostText] = useState(initialText);
   const navigate = useNavigate();
   
   return (

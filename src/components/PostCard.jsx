@@ -1,4 +1,4 @@
-export default function PostCard({ post }) {
+export default function PostCard({ post, children }) {
   const prettyDate = (rawTime) => {
     const currentTime = Date.now();
     const pastTime = (currentTime - rawTime) / 60000;
@@ -20,6 +20,7 @@ export default function PostCard({ post }) {
         <li className="list-group-item">{post.content}</li>
         <li className="list-group-item">{prettyDate(post.created)}</li>        
       </ul>
+      {children}
     </div>
   );
 }
