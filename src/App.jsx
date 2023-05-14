@@ -14,6 +14,10 @@ export default function App() {
   
   const addNewPost = postText => setNewPost({content: postText, id: 0});
   const handleDelete = postId => setDeletePost(postId);
+  const handleEdit = post => {
+    setDeletePost(post.id);
+    setNewPost(post);
+  };
 
   return (    
       <BrowserRouter>        
@@ -21,10 +25,11 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />            
             <Route path="/new" element={<NewPost handleSubmit={addNewPost} />} />            
-            <Route path=":id" element={<ViewCard handleDelete={handleDelete} />} />            
+            <Route path=":id" element={<ViewCard handleDelete={handleDelete} handleEdit={handleEdit} />} />            
           </Routes>
-          {posting && <h5>Loading ...</h5>}          
+          {(posting || deleting) && <h5>Busy ...</h5>}          
           {errorPosting && <h5>{errorPosting}</h5>}
+          {errorDeleting && <h5>{errorDeleting}</h5>}
         </div>
       </BrowserRouter>    
   );
